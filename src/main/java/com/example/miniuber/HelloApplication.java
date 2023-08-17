@@ -11,11 +11,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("WelcomePage.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
-//        stage.setTitle("Mini-Uber");
-//        stage.setScene(scene);
-//        stage.show();
+
         Parent root = FXMLLoader.load(getClass().getResource("WelcomePage.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);

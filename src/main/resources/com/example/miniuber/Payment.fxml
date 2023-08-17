@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniuber.HelloController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="721.0" fitWidth="1036.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/payment.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="onSupport" layoutX="960.0" layoutY="657.0" mnemonicParsing="false" onAction="#onSupportClick" opacity="0.0" prefHeight="46.0" prefWidth="41.0" text="Button" />
+            <Button fx:id="onSubmit" layoutX="433.0" layoutY="516.0" mnemonicParsing="false" opacity="0.0" prefHeight="44.0" prefWidth="174.0" text="Button" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
