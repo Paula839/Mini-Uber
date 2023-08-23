@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniuber.HelloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniuber.Request">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -15,9 +15,29 @@
                   <Image url="@../../../assets/request.png" />
                </image>
             </ImageView>
-            <Button fx:id="onSupport" layoutX="937.0" layoutY="649.0" mnemonicParsing="false" onAction="#onSupportClick" opacity="0.0" prefHeight="42.0" prefWidth="47.0" text="Button" />
-            <Button fx:id="onBack" layoutX="8.0" layoutY="21.0" mnemonicParsing="false"  opacity="0.0" prefHeight="33.0" prefWidth="37.0" text="Button" />
+            <Button fx:id="onSupport" layoutX="937.0" layoutY="649.0" mnemonicParsing="false" opacity="0.0" prefHeight="42.0" prefWidth="47.0" text="Button" />
+            <Button fx:id="onBack" layoutX="8.0" layoutY="21.0" mnemonicParsing="false" onAction="#onGoBackClick" opacity="0.0" prefHeight="33.0" prefWidth="37.0" text="Button" />
             <Button fx:id="onRequest" layoutX="415.0" layoutY="583.0" mnemonicParsing="false" onAction="#onRequestClick" opacity="0.0" prefHeight="44.0" prefWidth="176.0" text="Button" />
+            <ImageView fx:id="premium" fitHeight="171.0" fitWidth="153.0" layoutX="155.0" layoutY="361.0" onMouseClicked="#onPremiumClick" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/premium.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="normal" fitHeight="171.0" fitWidth="153.0" layoutX="340.0" layoutY="362.0" onMouseClicked="#onNormalClick" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/normal.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="bus" fitHeight="171.0" fitWidth="153.0" layoutX="524.0" layoutY="362.0" onMouseClicked="#onBusClick" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/bus.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="motorbike" fitHeight="171.0" fitWidth="153.0" layoutX="709.0" layoutY="362.0" onMouseClicked="#onMotorClick" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/motorbike.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

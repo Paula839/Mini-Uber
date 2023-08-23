@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniuber.HelloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniuber.Payment">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -15,8 +15,18 @@
                   <Image url="@../../../assets/payment.png" />
                </image>
             </ImageView>
-            <Button fx:id="onSupport" layoutX="960.0" layoutY="657.0" mnemonicParsing="false" onAction="#onSupportClick" opacity="0.0" prefHeight="46.0" prefWidth="41.0" text="Button" />
+            <Button fx:id="onSupport" layoutX="960.0" layoutY="657.0" mnemonicParsing="false" opacity="0.0" prefHeight="46.0" prefWidth="41.0" text="Button" />
             <Button fx:id="onSubmit" layoutX="433.0" layoutY="516.0" mnemonicParsing="false" opacity="0.0" prefHeight="44.0" prefWidth="174.0" text="Button" />
+            <ImageView fx:id="credit" fitHeight="253.0" fitWidth="225.0" layoutX="260.0" layoutY="218.0" onMouseClicked="#onCreditClick" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/credit.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="cash" fitHeight="253.0" fitWidth="225.0" layoutX="559.0" layoutY="218.0" onMouseClicked="#onCashClick" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/cash.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>
