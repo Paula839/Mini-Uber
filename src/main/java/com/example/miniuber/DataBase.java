@@ -2,26 +2,20 @@ package com.example.miniuber;
 
 import java.sql.*;
 
-public class DataBase  {
+public class Database {
 
-    public static Connection connection;
     public static Statement statement;
-    public static ResultSet resultSet;
+    public static Connection connection;
 
-    public static void store()
-
-    {
+    static {
         try {
-             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/uber", "root", "12345678");
-             statement = connection.createStatement();
-             resultSet = statement.executeQuery("select * from supporttickets");
-
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("message"));
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/uber", "root", "#PaulaEmad01281441928");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+    }
+
+    public static void store() throws SQLException {
+
     }
 }
