@@ -9,7 +9,7 @@ public class Database {
 
     static {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/uber", "root", "#PaulaEmad01281441928");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/uber", "root", "???");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
