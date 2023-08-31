@@ -11,7 +11,6 @@ public class Payment {
     public void onCreditClick()  {
         if(credit.getOpacity() == 0)
             credit.setOpacity(1);
-
         else
             credit.setOpacity(0);
     }   @FXML

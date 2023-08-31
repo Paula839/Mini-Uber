@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Login implements DefaultSettings {
+public class Login extends DefaultSettings {
 
     @FXML
     private TextField username;
@@ -25,50 +25,34 @@ public class Login implements DefaultSettings {
     private TextField password;
     @FXML
     private Label wrongInput;
-    @Override
+
     @FXML
-    public void onGoBackClick(ActionEvent event) throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("WelcomePage.fxml"));
-        Variables.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Variables.scene = new Scene(root);
-        Variables.stage.setScene(Variables.scene);
-        Variables.stage.show();
-
-
+    public void onGoBackClick(ActionEvent page) throws IOException {
+      goTo(page, "WelcomePage");
     }
     @FXML
 
-    public void onSigninClick(ActionEvent event) throws IOException{
-        if(username.getText().isEmpty() || username.getText().isEmpty())
-                wrongInput.setText("Invalid username or password!");
+    public void onSigninClick(ActionEvent page) throws IOException {
+        if (username.getText().isEmpty() || username.getText().isEmpty())
+            wrongInput.setText("Invalid username or password!");
         else {
-            Parent root = FXMLLoader.load(getClass().getResource("Request.fxml"));
-            Variables.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Variables.scene = new Scene(root);
-            Variables.stage.setScene(Variables.scene);
-            Variables.stage.show();
+            goTo(page, "Request");
         }
     }
 
     @FXML
-    public void onSignupClick(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
-        Variables.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Variables.scene = new Scene(root);
-        Variables.stage.setScene(Variables.scene);
-        Variables.stage.show();
+    void onSignupClick(ActionEvent page) throws IOException {
+        goTo(page, "Register");
     }
 
-    @Override
+
     @FXML
-    public void onSupportClick(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("SupportTicket.fxml"));
-        Variables.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Variables.scene = new Scene(root);
-        Variables.stage.setScene(Variables.scene);
-        Variables.stage.show();
+    public void onSupportClick(ActionEvent page) throws IOException {
+        goTo(page, "SupportTicket");
     }
+
+
+
 
 
 }
