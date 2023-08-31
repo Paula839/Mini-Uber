@@ -10,12 +10,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class Register implements DefaultSettings {
 
-    String EMAIL_REGEX = "^(.+)@(.+)$";
+
+    String regexPattern2 ="^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    Pattern pattern= Pattern.compile(regexPattern2);
     @FXML
     private Label Wrong;
     @FXML
@@ -51,17 +55,13 @@ public class Register implements DefaultSettings {
         if (Firstname.getText().isEmpty() || Lastname.getText().isEmpty() || Username.getText().isEmpty() || Password.getText().isEmpty() || Confirmpassword.getText().isEmpty() || Email.getText().isEmpty()) {
             Wrong.setText("Please Enter The TextField");
 
-
-            ///if (!Objects.equals(Email,EMAIL_REGEX)){
-
-            ///  Wrong.setText("Email format is not allowed");}
         }
         else if (!(Password.getText().equals(Confirmpassword.getText()))) {
 
             Wrong.setText("Confirm password is not correct");
         }
-     ///   else if(!(Email.getText().contains("@"))) {
-        else if(!(Email.getText().equals(EMAIL_REGEX))) {
+
+     else if (!(pattern.matcher(Email.getText()).matches())){
 
             Wrong.setText("Email Format is not correct");
 
