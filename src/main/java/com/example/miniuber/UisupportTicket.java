@@ -1,5 +1,7 @@
 package com.example.miniuber;
+public class UisupportTicket{
 
+        }
 abstract class SupportTicket implements Ticket {
     private int ticketId;
     private String Username;
