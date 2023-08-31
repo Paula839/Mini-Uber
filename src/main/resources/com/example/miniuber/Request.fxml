@@ -64,6 +64,10 @@
                <font>
                   <Font size="13.0" />
                </font></Label>
+            <Label fx:id="DidNotChose" layoutX="303.0" layoutY="65.0" prefHeight="27.0" prefWidth="370.0" textFill="RED">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </center>

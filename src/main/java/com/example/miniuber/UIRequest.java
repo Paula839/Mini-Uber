@@ -24,12 +24,13 @@ import static java.lang.Math.abs;
 import java.util.stream.IntStream;
 
 public class UIRequest implements Initializable{
+    double finalCost = 0;
     String FromLocInput , ToLocInput;
-    double CostPermuim, CostNormal, CostBus, CostMotorbike;
+    double CostPermuim=0, CostNormal=0, CostBus=0, CostMotorbike=0;
     @FXML
     private ComboBox<String> FromLoc_Combo,ToLoc_combo;
     @FXML
-    private Label PermuimCostLabel,NormalCostLabel,BusCostLabel,MotorCostLabel,wrongLocLabel;
+    private Label PermuimCostLabel,NormalCostLabel,BusCostLabel,MotorCostLabel,wrongLocLabel,DidNotChose;
     @FXML
     public void onGoBackClick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
@@ -41,11 +42,17 @@ public class UIRequest implements Initializable{
     }
     @FXML
     public void onRequestClick(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Payment.fxml"));
-        Variables.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Variables.scene = new Scene(root);
-        Variables.stage.setScene(Variables.scene);
-        Variables.stage.show();
+        if(finalCost==0){
+            DidNotChose.setText("Please choose location and car type first");
+        }
+        else {
+            DidNotChose.setText("");
+            Parent root = FXMLLoader.load(getClass().getResource("Payment.fxml"));
+            Variables.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Variables.scene = new Scene(root);
+            Variables.stage.setScene(Variables.scene);
+            Variables.stage.show();
+        }
     }
 
     @FXML
@@ -53,35 +60,71 @@ public class UIRequest implements Initializable{
 
     @FXML
     public void onPremiumClick()  {
-        if(premium.getOpacity() == 0)
+        if(premium.getOpacity() == 0) {
             premium.setOpacity(1);
-
-        else
+            normal.setOpacity(0);
+            bus.setOpacity(0);
+            motorbike.setOpacity(0);
+            finalCost = CostPermuim;
+            if(finalCost == 0){
+                DidNotChose.setText("Please choose a location first");
+            }
+        }
+        else {
             premium.setOpacity(0);
+            finalCost =0;
+        }
     }
     @FXML
     public void onNormalClick()  {
-        if(normal.getOpacity() == 0)
+        if(normal.getOpacity() == 0) {
             normal.setOpacity(1);
-
-        else
+            premium.setOpacity(0);
+            bus.setOpacity(0);
+            motorbike.setOpacity(0);
+            finalCost = CostNormal;
+            if(finalCost == 0){
+                DidNotChose.setText("Please choose a location first");
+            }
+        }
+        else {
             normal.setOpacity(0);
+            finalCost = 0;
+        }
     }
     @FXML
     public void onBusClick()  {
-        if(bus.getOpacity() == 0)
+        if(bus.getOpacity() == 0) {
             bus.setOpacity(1);
-
-        else
+            premium.setOpacity(0);
+            normal.setOpacity(0);
+            motorbike.setOpacity(0);
+            finalCost = CostBus;
+            if(finalCost == 0){
+                DidNotChose.setText("Please choose a location first");
+            }
+        }
+        else {
             bus.setOpacity(0);
+            finalCost=0;
+        }
     }
     @FXML
     public void onMotorClick()  {
-        if(motorbike.getOpacity() == 0)
+        if(motorbike.getOpacity() == 0) {
             motorbike.setOpacity(1);
-
-        else
+            premium.setOpacity(0);
+            bus.setOpacity(0);
+            bus.setOpacity(0);
+            finalCost = CostMotorbike;
+            if(finalCost == 0){
+                DidNotChose.setText("Please choose a location first");
+            }
+        }
+        else {
             motorbike.setOpacity(0);
+            finalCost=0;
+        }
     }
 
 
@@ -110,6 +153,7 @@ public class UIRequest implements Initializable{
             BusCostLabel.setText(String.valueOf(CostBus));
             MotorCostLabel.setText(String.valueOf(CostMotorbike));
             wrongLocLabel.setText("");
+            DidNotChose.setText("");
         }
         else{
             PermuimCostLabel.setText("");
