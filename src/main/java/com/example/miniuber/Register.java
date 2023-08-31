@@ -10,83 +10,55 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class Register implements DefaultSettings {
+public class Register extends DefaultSettings {
 
 
-    String regexPattern2 ="^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-    Pattern pattern= Pattern.compile(regexPattern2);
+    String emailPattern ="^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    Pattern pattern= Pattern.compile(emailPattern);
     @FXML
-    private Label Wrong;
+    private Label wrongLabel;
     @FXML
-    private Label pass;
+    private Label passwordLabel;
     @FXML
-    private TextField Firstname;
+    private TextField firstname;
     @FXML
-    private TextField Lastname;
+    private TextField lastname;
     @FXML
-    private TextField Username;
+    private TextField username;
     @FXML
-    private TextField Password;
+    private TextField password;
     @FXML
-    private TextField Confirmpassword;
+    private TextField confirmPassword;
     @FXML
-    private TextField Email;
-    @Override
-    @FXML
-    public void onGoBackClick(ActionEvent event) throws IOException {
+    private TextField email;
 
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Variables.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Variables.scene = new Scene(root);
-        Variables.stage.setScene(Variables.scene);
-        Variables.stage.show();
-
-
+    @FXML
+    public void onGoBackClick(ActionEvent page) throws IOException {
+        goTo(page ,"Login");
     }
 
     @FXML
-    public void onRegisterClick(ActionEvent event) throws IOException {
+    public void onRegisterClick(ActionEvent page) throws IOException {
 
-        if (Firstname.getText().isEmpty() || Lastname.getText().isEmpty() || Username.getText().isEmpty() || Password.getText().isEmpty() || Confirmpassword.getText().isEmpty() || Email.getText().isEmpty()) {
-            Wrong.setText("Please Enter The TextField");
-
+        if (firstname.getText().isEmpty() || lastname.getText().isEmpty() || username.getText().isEmpty()
+                || password.getText().isEmpty() || confirmPassword.getText().isEmpty()
+                || email.getText().isEmpty()) {
+            wrongLabel.setText("Please Enter The TextField");
+        } else if (!(password.getText().equals(confirmPassword.getText()))) {
+            wrongLabel.setText("Confirm password is not correct");
+        } else if (!(pattern.matcher(email.getText()).matches())) {
+            wrongLabel.setText("Email Format is not correct");
+        } else {
+            goTo(page, "Login");
         }
-        else if (!(Password.getText().equals(Confirmpassword.getText()))) {
-
-            Wrong.setText("Confirm password is not correct");
-        }
-
-     else if (!(pattern.matcher(Email.getText()).matches())){
-
-            Wrong.setText("Email Format is not correct");
-
-        }
-        else{
-            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            Variables.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Variables.scene = new Scene(root);
-            Variables.stage.setScene(Variables.scene);
-            Variables.stage.show();
-        }
-
-
     }
-
-    @Override
     @FXML
-    public void onSupportClick(ActionEvent event) throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("SupportTicket.fxml"));
-        Variables.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Variables.scene = new Scene(root);
-        Variables.stage.setScene(Variables.scene);
-        Variables.stage.show();
-
+    public void onSupportClick(ActionEvent page) throws IOException {
+        goTo(page, "SupportTicket");
     }
 
 }
