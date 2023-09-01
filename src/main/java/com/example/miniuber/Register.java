@@ -2,91 +2,78 @@ package com.example.miniuber;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-
-import javax.swing.*;
 import java.io.IOException;
-import java.util.Objects;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 
-public class Register implements DefaultSettings {
+public class Register extends DefaultSettings implements Store{
 
+    String SQL;
+    String emailFormat ="^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    Pattern pattern = Pattern.compile(emailFormat);
+    @FXML
+    private Label wrong;
+    @FXML
+    private TextField firstname;
+    @FXML
+    private TextField lastname;
+    @FXML
+    private TextField username;
+    @FXML
+    private TextField password;
+    @FXML
+    private TextField confirmPassword;
+    @FXML
+    private TextField email;
+    @FXML
+    public void onGoBackClick(ActionEvent page) throws IOException {
+       goTo(page, "Login");
+    }
+    @FXML
+    public void onRegisterClick(ActionEvent page) throws IOException, SQLException {
 
-    String regexPattern2 ="^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-    Pattern pattern= Pattern.compile(regexPattern2);
-    @FXML
-    private Label Wrong;
-    @FXML
-    private Label pass;
-    @FXML
-    private TextField Firstname;
-    @FXML
-    private TextField Lastname;
-    @FXML
-    private TextField Username;
-    @FXML
-    private TextField Password;
-    @FXML
-    private TextField Confirmpassword;
-    @FXML
-    private TextField Email;
-    @Override
-    @FXML
-    public void onGoBackClick(ActionEvent event) throws IOException {
+        if (firstname.getText().isEmpty() || lastname.getText().isEmpty() ||
+                username.getText().isEmpty() || password.getText().isEmpty() ||
+                confirmPassword.getText().isEmpty() || email.getText().isEmpty()) {
+            wrong.setText("Please Enter The TextField");
 
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Variables.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Variables.scene = new Scene(root);
-        Variables.stage.setScene(Variables.scene);
-        Variables.stage.show();
+        }
 
+        else if (!(password.getText().equals(confirmPassword.getText()))) {
 
+            wrong.setText("Confirm password is not correct");
+        }
+
+        else if (!(pattern.matcher(email.getText()).matches())) {
+            wrong.setText("Email Format is not correct");
+        }
+
+        else {
+            store(SQL);
+            goTo(page, "Login");
+        }
     }
 
     @FXML
-    public void onRegisterClick(ActionEvent event) throws IOException {
-
-        if (Firstname.getText().isEmpty() || Lastname.getText().isEmpty() || Username.getText().isEmpty() || Password.getText().isEmpty() || Confirmpassword.getText().isEmpty() || Email.getText().isEmpty()) {
-            Wrong.setText("Please Enter The TextField");
-
-        }
-        else if (!(Password.getText().equals(Confirmpassword.getText()))) {
-
-            Wrong.setText("Confirm password is not correct");
-        }
-
-     else if (!(pattern.matcher(Email.getText()).matches())){
-
-            Wrong.setText("Email Format is not correct");
-
-        }
-        else{
-            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            Variables.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Variables.scene = new Scene(root);
-            Variables.stage.setScene(Variables.scene);
-            Variables.stage.show();
-        }
-
-
+    public void onSupportClick(ActionEvent page) throws IOException {
+        goTo(page, "SupportTicket");
     }
 
     @Override
-    @FXML
-    public void onSupportClick(ActionEvent event) throws IOException {
+    public void store(String SQL) throws SQLException {
+        SQL = "INSERT INTO user VALUES( "+
+                "\""+firstname.getText()+ "\" , "+
+                "\""+lastname.getText()+ "\" , "+
+                "\""+username.getText()+ "\" , "+
+                "\""+password.getText()+ "\" , "+
+                "\""+email.getText()+ "\"  "+
+                ")";
 
-        Parent root = FXMLLoader.load(getClass().getResource("SupportTicket.fxml"));
-        Variables.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Variables.scene = new Scene(root);
-        Variables.stage.setScene(Variables.scene);
-        Variables.stage.show();
+        System.out.println(SQL);
+        Database.statement = Database.connection.createStatement();
 
+       Database.statement.executeUpdate(SQL);
     }
-
 }

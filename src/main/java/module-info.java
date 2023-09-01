@@ -1,6 +1,7 @@
 module com.example.miniuber {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
 
     requires com.dlsc.formsfx;
     requires com.almasb.fxgl.all;
