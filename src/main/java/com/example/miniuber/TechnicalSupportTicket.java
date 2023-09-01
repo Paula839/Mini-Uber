@@ -1,7 +1,7 @@
 package com.example.miniuber;
 
-public class TechnicalSupportTicket extends SupportTicket {
+public class TechnicalSupportTicket {
     TechnicalSupportTicket(int ticketId, String Username, String issueDescription){
-        super(ticketId, Username, issueDescription);
+//        super(ticketId, Username, issueDescription);
     }
 }

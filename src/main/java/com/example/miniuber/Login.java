@@ -17,9 +17,7 @@ public class Login extends DefaultSettings {
     private Label wrongInput;
     @FXML
     public void onGoBackClick(ActionEvent page) throws IOException {
-
         goTo(page, "WelcomePage");
-
     }
     @FXML
     public void validation() throws SQLException {
@@ -31,8 +29,7 @@ public class Login extends DefaultSettings {
     }
 
     @FXML
-    public void onSigninClick(ActionEvent page) throws IOException, SQLException {
-
+    public void onSignInClick(ActionEvent page) throws IOException, SQLException {
         validation();
         saveUsername = username;
         if (Database.resultSet.next()) {
@@ -44,11 +41,15 @@ public class Login extends DefaultSettings {
         }
     }
     @FXML
-    public void onSignupClick(ActionEvent page) throws IOException {
+    public void onSignUpClick(ActionEvent page) throws IOException {
         goTo(page, "Register");
     }
     @FXML
-    public void onSupportClick(ActionEvent page) throws IOException {
-        goTo(page, "SupportTicket");
+    public void onForgetClick(ActionEvent page) throws IOException {
+        goTo(page, "Forget");
+    }
+    @FXML
+    public void onAboutUsClick(ActionEvent page) throws IOException {
+        goTo(page, "AboutUs");
     }
 }

@@ -15,7 +15,7 @@ public class Payment extends DefaultSettings  implements Store {
 
    public TextField creditNumbers;
 
-    private String sql;
+    private String SQL;
     public Label wrong;
 
     @FXML
@@ -52,7 +52,7 @@ public class Payment extends DefaultSettings  implements Store {
 
         if(cash.getOpacity()==1){
             //store username,from,to,transport,price,payment method
-            store(sql);
+            store(SQL);
 
         }
         else if(credit.getOpacity()==1){
@@ -61,7 +61,7 @@ public class Payment extends DefaultSettings  implements Store {
                    wrong.setText("Please enter a valid Credit card!");
             }
             else{
-                store(sql);
+                store(SQL);
                 //store creditNumbers
             }
         }
@@ -137,4 +137,13 @@ public class Payment extends DefaultSettings  implements Store {
         Database.statement.executeUpdate(sql);
     }
 
+    @FXML
+    public void onAboutUsClick(ActionEvent page) throws IOException {
+        goTo(page, "AboutUs");
+    }
+
+    @FXML
+    public void onLogOutClick(ActionEvent page) throws IOException {
+        goTo(page, "WelcomePage");
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.miniuber;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -153,6 +154,16 @@ public class UIRequest extends DefaultSettings implements Initializable {
             motorCostLabel.setText("");
             wrongLabel.setText("Please Choose the right Location!");
         }
+    }
+
+    @FXML
+    public void onAboutUsClick(ActionEvent page) throws IOException {
+        goTo(page, "AboutUs");
+    }
+
+    @FXML
+    public void onLogOutClick(ActionEvent page) throws IOException {
+        goTo(page, "WelcomePage");
     }
 }
 

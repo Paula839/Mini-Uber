@@ -18,9 +18,9 @@
                   <Image url="@../../../assets/payment.png" />
                </image>
             </ImageView>
-            <Button fx:id="onBack" layoutX="8.0" layoutY="21.0" mnemonicParsing="false" onAction="#onGoBackClick" opacity="0.0" prefHeight="33.0" prefWidth="37.0" text="Button" />
+            <Button fx:id="onBack" layoutX="23.0" layoutY="31.0" mnemonicParsing="false" onAction="#onGoBackClick" opacity="0.0" prefHeight="33.0" prefWidth="37.0" text="Button" />
 
-            <Button fx:id="onSupport" layoutX="960.0" layoutY="657.0" mnemonicParsing="false" opacity="0.0" onAction="#onSupportClick" prefHeight="46.0" prefWidth="41.0" text="Button" />
+            <Button fx:id="onSupport" layoutX="960.0" layoutY="657.0" mnemonicParsing="false" onAction="#onSupportClick" opacity="0.0" prefHeight="46.0" prefWidth="41.0" text="Button" />
             <Button fx:id="onSubmit" layoutX="433.0" layoutY="516.0" mnemonicParsing="false" onMouseClicked="#onSubmitClick" opacity="0.0" prefHeight="44.0" prefWidth="174.0" text="Button" />
             <ImageView id="credit" fx:id="credit" fitHeight="253.0" fitWidth="225.0" layoutX="260.0" layoutY="218.0" onMouseClicked="#onCardClick" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -39,6 +39,8 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
+            <Button fx:id="onAboutUs" layoutX="33.0" layoutY="696.0" mnemonicParsing="false" onAction="#onAboutUsClick" opacity="0.0" prefHeight="25.0" prefWidth="80.0" text="Button" />
+            <Button fx:id="onLogOut" layoutX="37.0" layoutY="646.0" mnemonicParsing="false" onAction="#onLogOutClick" opacity="0.0" prefHeight="50.0" prefWidth="47.0" text="Button" />
            
          </children>
       </AnchorPane>

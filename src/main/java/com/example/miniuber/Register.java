@@ -76,4 +76,9 @@ public class Register extends DefaultSettings implements Store{
 
        Database.statement.executeUpdate(SQL);
     }
+    @FXML
+    public void onAboutUsClick(ActionEvent page) throws IOException {
+        goTo(page, "AboutUs");
+    }
+
 }
