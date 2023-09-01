@@ -15,17 +15,19 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class Login implements DefaultSettings {
+public class Login extends DefaultSettings {
 
     @FXML
-    private TextField username;
+    public  TextField username;
+    public static TextField saveUsername;
     @FXML
     private TextField password;
     @FXML
     private Label wrongInput;
-    @Override
+
     @FXML
     public void onGoBackClick(ActionEvent event) throws IOException {
 
@@ -37,18 +39,39 @@ public class Login implements DefaultSettings {
 
 
     }
+
+    @FXML
+    public void validation() throws SQLException {
+        Database.statement = Database.connection.createStatement();
+        String command = "SELECT * FROM  user  WHERE username = " +  '\"'
+                + username.getText() + '\"' + " AND password = " + '\"' + password.getText()  + '\"';
+        Database.statement = Database.connection.prepareStatement(command);
+        Database.resultSet = Database.statement.executeQuery(command);
+
+    }
+
     @FXML
 
-    public void onSigninClick(ActionEvent event) throws IOException{
-        if(username.getText().isEmpty() || username.getText().isEmpty())
-                wrongInput.setText("Invalid username or password!");
-        else {
+    public void onSigninClick(ActionEvent event) throws IOException, SQLException {
+
+        validation();
+
+        saveUsername=username;
+
+        if (Database.resultSet.next()) {
             Parent root = FXMLLoader.load(getClass().getResource("Request.fxml"));
             Variables.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Variables.scene = new Scene(root);
             Variables.stage.setScene(Variables.scene);
             Variables.stage.show();
-        }
+
+        } else
+
+        wrongInput.setText("Invalid username or password!");
+
+
+
+
     }
 
     @FXML
@@ -60,7 +83,7 @@ public class Login implements DefaultSettings {
         Variables.stage.show();
     }
 
-    @Override
+
     @FXML
     public void onSupportClick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("SupportTicket.fxml"));
@@ -69,6 +92,5 @@ public class Login implements DefaultSettings {
         Variables.stage.setScene(Variables.scene);
         Variables.stage.show();
     }
-
 
 }

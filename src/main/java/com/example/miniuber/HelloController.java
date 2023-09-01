@@ -22,25 +22,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HelloController {
+public class HelloController extends DefaultSettings{
 
 
     @FXML
-    public void onGoButtonClick(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Variables.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Variables.scene = new Scene(root);
-        Variables.stage.setScene(Variables.scene);
-        Variables.stage.show();
+    public void onGoButtonClick(ActionEvent page) throws IOException {
+       goTo(page,"Login");
     }
-
-
-
-
-
-
-
-
-
 
 }

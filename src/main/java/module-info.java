@@ -4,6 +4,7 @@ module com.example.miniuber {
 
     requires com.dlsc.formsfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     opens com.example.miniuber to javafx.fxml;
     exports com.example.miniuber;

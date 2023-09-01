@@ -1,5 +1,6 @@
 package com.example.miniuber;
 
+//import com.almasb.fxgl.net.Connection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,6 +8,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 
 public class HelloApplication extends Application {
     @Override
@@ -19,7 +23,11 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-        launch();
+    public static void main(String[] args) throws SQLException {
+
+
+
+    launch();
     }
+
 }

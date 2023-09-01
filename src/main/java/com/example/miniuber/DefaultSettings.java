@@ -2,12 +2,24 @@ package com.example.miniuber;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public interface DefaultSettings {
+public abstract class DefaultSettings {
+
     @FXML
-    void onGoBackClick(ActionEvent event) throws IOException;
-    @FXML
-    void onSupportClick(ActionEvent event) throws IOException;
+   public void goTo(ActionEvent event, String page) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(page + ".fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
 }
