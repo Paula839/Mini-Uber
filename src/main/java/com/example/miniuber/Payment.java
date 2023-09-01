@@ -1,5 +1,5 @@
-package com.example.miniuber;
 
+package com.example.miniuber;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,7 +15,7 @@ public class Payment extends DefaultSettings  implements Store {
 
    public TextField creditNumbers;
 
-    private String SQL;
+    private String sql;
     public Label wrong;
 
     @FXML
@@ -48,26 +48,33 @@ public class Payment extends DefaultSettings  implements Store {
             cash.setOpacity(0);
     }
 
-    public void onSubmitClick() throws SQLException {
+    public void onSubmitClick(ActionEvent page) throws SQLException, IOException {
+        savePage = "Payment";
 
-        if(cash.getOpacity()==1){
-            //store username,from,to,transport,price,payment method
-            store(SQL);
+        if(cash.getOpacity()==1) {
+            System.out.println(sql);
 
+            store(sql);
+            goTo(page,"Done");
         }
-        else if(credit.getOpacity()==1){
 
-            if(creditNumbers.getLength()<16||creditNumbers.getLength()>19){
+        else if(credit.getOpacity()==1) {
+
+            if(creditNumbers.getLength()<16||creditNumbers.getLength()>19) {
                    wrong.setText("Please enter a valid Credit card!");
             }
-            else{
-                store(SQL);
-                //store creditNumbers
+            else {
+                System.out.println(sql);
+                store(sql);
+                goTo(page,"Done");
+
             }
         }
-        else{
+
+        else {
             wrong.setText("Please select a payment method!");
         }
+
     }
     public void onSupportClick(ActionEvent page) throws IOException {
         goTo(page,"SupportTicket");
@@ -144,6 +151,8 @@ public class Payment extends DefaultSettings  implements Store {
 
     @FXML
     public void onLogOutClick(ActionEvent page) throws IOException {
+        savePage = "Payment";
         goTo(page, "WelcomePage");
     }
+
 }

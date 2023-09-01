@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class Register extends DefaultSettings implements Store{
 
-    String SQL;
+    String sql;
     String emailFormat ="^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
     Pattern pattern = Pattern.compile(emailFormat);
     @FXML
@@ -51,7 +51,7 @@ public class Register extends DefaultSettings implements Store{
         }
 
         else {
-            store(SQL);
+            store(sql);
             goTo(page, "Login");
         }
     }
@@ -62,8 +62,8 @@ public class Register extends DefaultSettings implements Store{
     }
 
     @Override
-    public void store(String SQL) throws SQLException {
-        SQL = "INSERT INTO user VALUES( "+
+    public void store(String sql) throws SQLException {
+        sql = "INSERT INTO user VALUES( "+
                 "\""+firstname.getText()+ "\" , "+
                 "\""+lastname.getText()+ "\" , "+
                 "\""+username.getText()+ "\" , "+
@@ -71,13 +71,14 @@ public class Register extends DefaultSettings implements Store{
                 "\""+email.getText()+ "\"  "+
                 ")";
 
-        System.out.println(SQL);
+        System.out.println(sql);
         Database.statement = Database.connection.createStatement();
 
-       Database.statement.executeUpdate(SQL);
+       Database.statement.executeUpdate(sql);
     }
     @FXML
     public void onAboutUsClick(ActionEvent page) throws IOException {
+        savePage = "Register";
         goTo(page, "AboutUs");
     }
 

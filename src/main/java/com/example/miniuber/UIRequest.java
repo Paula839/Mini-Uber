@@ -117,6 +117,11 @@ public class UIRequest extends DefaultSettings implements Initializable {
             finalCost=0;
         }
     }
+
+    public void onSupportClick(ActionEvent page) throws IOException {
+        savePage = "Request";
+        goTo(page,"SupportTicket");
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fromCombo.setItems(FXCollections.observableArrayList("Elkurba", "Roxy", "Heliopolis",
@@ -158,6 +163,7 @@ public class UIRequest extends DefaultSettings implements Initializable {
 
     @FXML
     public void onAboutUsClick(ActionEvent page) throws IOException {
+        savePage = "UIRequest";
         goTo(page, "AboutUs");
     }
 

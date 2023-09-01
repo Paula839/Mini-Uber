@@ -8,11 +8,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class Login extends DefaultSettings {
+
+
     @FXML
     public TextField username;
     public static TextField saveUsername;
     @FXML
     private TextField password;
+
     @FXML
     private Label wrongInput;
     @FXML
@@ -50,6 +53,7 @@ public class Login extends DefaultSettings {
     }
     @FXML
     public void onAboutUsClick(ActionEvent page) throws IOException {
+        savePage = "Login";
         goTo(page, "AboutUs");
     }
 }

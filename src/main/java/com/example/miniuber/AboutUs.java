@@ -8,6 +8,7 @@ import java.io.IOException;
 public class AboutUs extends DefaultSettings{
     @FXML
     public void onGoBackClick(ActionEvent page) throws IOException {
-        goTo(page, "WelcomePage");
+
+        goTo(page, savePage);
     }
 }

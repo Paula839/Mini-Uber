@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public abstract class DefaultSettings {
 
+    public static String savePage;
+
     @FXML
    public void goTo(ActionEvent event, String page) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(page + ".fxml"));

@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class HelloController extends DefaultSettings{
 
-    String sound = "D:\\CloneFinal\\Mini-Uber\\src\\main\\resources\\music\\eft7.mp3";
+    String sound = "D:\\finalUber\\Mini-Uber\\src\\main\\resources\\music\\eft7.mp3";
     Media media = new Media(new File(sound).toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(media);
     @FXML
@@ -25,6 +25,7 @@ public class HelloController extends DefaultSettings{
     }
     @FXML
     public void onAboutUsClick(ActionEvent page) throws IOException {
+        savePage = "WelcomePage";
         goTo(page, "AboutUs");
     }
 

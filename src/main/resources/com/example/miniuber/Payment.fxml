@@ -21,7 +21,7 @@
             <Button fx:id="onBack" layoutX="23.0" layoutY="31.0" mnemonicParsing="false" onAction="#onGoBackClick" opacity="0.0" prefHeight="33.0" prefWidth="37.0" text="Button" />
 
             <Button fx:id="onSupport" layoutX="960.0" layoutY="657.0" mnemonicParsing="false" onAction="#onSupportClick" opacity="0.0" prefHeight="46.0" prefWidth="41.0" text="Button" />
-            <Button fx:id="onSubmit" layoutX="433.0" layoutY="516.0" mnemonicParsing="false" onMouseClicked="#onSubmitClick" opacity="0.0" prefHeight="44.0" prefWidth="174.0" text="Button" />
+            <Button fx:id="onSubmit" layoutX="433.0" layoutY="516.0" mnemonicParsing="false" onAction="#onSubmitClick" onMouseClicked="#onSubmitClick" opacity="0.0" prefHeight="44.0" prefWidth="174.0" text="Button" />
             <ImageView id="credit" fx:id="credit" fitHeight="253.0" fitWidth="225.0" layoutX="260.0" layoutY="218.0" onMouseClicked="#onCardClick" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/credit.png" />
