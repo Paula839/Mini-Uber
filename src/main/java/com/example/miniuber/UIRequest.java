@@ -25,7 +25,7 @@ import static java.lang.Math.abs;
 import java.util.stream.IntStream;
 
 public class UIRequest extends DefaultSettings implements Initializable {
-    double finalCost = 0;
+    Request request;
     String fromInput , toInput;
     double costPremium = 0, costNormal = 0, costBus = 0, costMotorbike = 0;
     @FXML
@@ -38,7 +38,7 @@ public class UIRequest extends DefaultSettings implements Initializable {
     }
     @FXML
     public void onRequestClick(ActionEvent page) throws IOException {
-        if(finalCost==0){
+        if(request.getFinalCost()==0){
             didNotChose.setText("Please choose location and car type first!");
         }
         else {
@@ -57,14 +57,14 @@ public class UIRequest extends DefaultSettings implements Initializable {
             normal.setOpacity(0);
             bus.setOpacity(0);
             motorbike.setOpacity(0);
-            finalCost = costPremium;
-            if(finalCost == 0){
+           request.setFinalCost(costPremium);
+            if(request.getFinalCost() == 0){
                 didNotChose.setText("Please choose a location first");
             }
         }
         else {
             premium.setOpacity(0);
-            finalCost =0;
+            request.setFinalCost(0);
         }
     }
     @FXML
@@ -74,14 +74,14 @@ public class UIRequest extends DefaultSettings implements Initializable {
             premium.setOpacity(0);
             bus.setOpacity(0);
             motorbike.setOpacity(0);
-            finalCost = costNormal;
-            if(finalCost == 0){
+            request.setFinalCost(costNormal);
+            if(request.getFinalCost() == 0){
                 didNotChose.setText("Please choose a location first");
             }
         }
         else {
             normal.setOpacity(0);
-            finalCost = 0;
+            request.setFinalCost(0);
         }
     }
     @FXML
@@ -91,14 +91,14 @@ public class UIRequest extends DefaultSettings implements Initializable {
             premium.setOpacity(0);
             normal.setOpacity(0);
             motorbike.setOpacity(0);
-            finalCost = costBus;
-            if(finalCost == 0){
+            request.setFinalCost(costBus);
+            if(request.getFinalCost() == 0){
                 didNotChose.setText("Please choose a location first");
             }
         }
         else {
             bus.setOpacity(0);
-            finalCost=0;
+            request.setFinalCost(0);
         }
     }
     @FXML
@@ -108,14 +108,14 @@ public class UIRequest extends DefaultSettings implements Initializable {
             premium.setOpacity(0);
             bus.setOpacity(0);
             bus.setOpacity(0);
-            finalCost = costMotorbike;
-            if(finalCost == 0){
+            request.setFinalCost(costMotorbike);
+            if(request.getFinalCost() == 0){
                 didNotChose.setText("Please choose a location first");
             }
         }
         else {
             motorbike.setOpacity(0);
-            finalCost=0;
+            request.setFinalCost(0);
         }
     }
 
@@ -138,7 +138,7 @@ public class UIRequest extends DefaultSettings implements Initializable {
         if(location.validate(fromInput, toInput)){
             index1 = location.getFromIndex(fromInput);
             index2 = location.getToIndex(toInput);
-            Request request = new Request();
+             request = new Request();
             costPremium = request.calculateCost(index1,index2,new Premium());
             costNormal = request.calculateCost(index1,index2,new Normal());
             costBus = request.calculateCost(index1,index2,new Bus());
@@ -155,6 +155,10 @@ public class UIRequest extends DefaultSettings implements Initializable {
             normalCostLabel.setText("");
             busCostLabel.setText("");
             motorCostLabel.setText("");
+            premium.setOpacity(0);
+            normal.setOpacity(0);
+            bus.setOpacity(0);
+            motorbike.setOpacity(0);
             wrongLabel.setText("Please Choose the right Location!");
         }
 
@@ -162,7 +166,7 @@ public class UIRequest extends DefaultSettings implements Initializable {
 }
 
 class Request {
-
+   private double finalCost = 0;
     private Calculator costCalculator;
 
     public Request() {
@@ -173,6 +177,14 @@ class Request {
 
     public double calculateCost(int fromIndex, int toIndex, Vehicle vehicle) {
         return costCalculator.calculate(fromIndex, toIndex)+ vehicle.cost;
+    }
+
+    public double getFinalCost() {
+        return finalCost;
+    }
+
+    public void setFinalCost(double finalCost) {
+        this.finalCost = finalCost;
     }
 }
 class Location {
