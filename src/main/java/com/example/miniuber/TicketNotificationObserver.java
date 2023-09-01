@@ -12,6 +12,6 @@ public class TicketNotificationObserver implements TicketObserver{
         }
          sendNotificationEmail();
     } private void sendNotificationEmail() {
-        System.out.println("Sending notification email: " + notification);/////UI msg b2a
+        System.out.println("Sending notification email: " + notification);/////UI msg b2a ####
     }
 }
