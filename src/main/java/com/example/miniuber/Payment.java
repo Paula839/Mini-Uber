@@ -2,25 +2,18 @@ package com.example.miniuber;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.SQLException;
-import com.example.miniuber.UIRequest;
 
 public class Payment extends DefaultSettings  implements Store {
 
    public ImageView credit;
-    public  ImageView cash;
+   public  ImageView cash;
 
-    public TextField creditNumbers;
+   public TextField creditNumbers;
 
     private String sql;
     public Label wrong;

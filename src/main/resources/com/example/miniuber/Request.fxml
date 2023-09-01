@@ -44,7 +44,7 @@
             <ComboBox fx:id="fromCombo" layoutX="298.0" layoutY="160.0" opacity="0.0" prefHeight="42.0" prefWidth="410.0" />
             <ComboBox fx:id="toCombo" layoutX="301.0" layoutY="260.0" opacity="0.0" prefHeight="42.0" prefWidth="407.0" />
             <Button layoutX="804.0" layoutY="212.0" mnemonicParsing="false" onAction="#OnConfirmLocClick" text="confrim" />
-            <Label fx:id="premuimCostLabel" layoutX="214.0" layoutY="491.0">
+            <Label fx:id="premiumCostLabel" layoutX="214.0" layoutY="491.0">
                <font>
                   <Font size="15.0" />
                </font></Label>
@@ -64,7 +64,7 @@
                <font>
                   <Font size="13.0" />
                </font></Label>
-            <Label fx:id="didNotChose" layoutX="303.0" layoutY="65.0" prefHeight="27.0" prefWidth="370.0" textFill="RED">
+            <Label fx:id="didNotChoose" layoutX="303.0" layoutY="65.0" prefHeight="27.0" prefWidth="370.0" textFill="RED">
                <font>
                   <Font size="15.0" />
                </font></Label>
