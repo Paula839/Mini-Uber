@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
 
-public class UIRequest extends DefaultSettings implements Initializable {
+public class UIRequest extends DefaultSettings implements Initializable, UIButtons, OnLogOut {
     double finalCost = 0;
     static String  fromInput , toInput;
     static double costPremium = 0, costNormal = 0, costBus = 0, costMotorbike = 0;
@@ -21,6 +21,7 @@ public class UIRequest extends DefaultSettings implements Initializable {
     private ComboBox<String> fromCombo, toCombo;
     @FXML
     private Label premiumCostLabel, normalCostLabel, busCostLabel, motorCostLabel, wrongLabel, didNotChoose;
+    @Override
     @FXML
     public void onGoBackClick(ActionEvent page) throws IOException {
         goTo(page, "Login");
@@ -117,7 +118,8 @@ public class UIRequest extends DefaultSettings implements Initializable {
             finalCost=0;
         }
     }
-
+    @Override
+    @FXML
     public void onSupportClick(ActionEvent page) throws IOException {
         savePage = "Request";
         goTo(page,"SupportTicket");
@@ -160,13 +162,13 @@ public class UIRequest extends DefaultSettings implements Initializable {
             wrongLabel.setText("Please Choose the right Location!");
         }
     }
-
+    @Override
     @FXML
     public void onAboutUsClick(ActionEvent page) throws IOException {
         savePage = "UIRequest";
         goTo(page, "AboutUs");
     }
-
+    @Override
     @FXML
     public void onLogOutClick(ActionEvent page) throws IOException {
         goTo(page, "WelcomePage");
@@ -203,7 +205,7 @@ class Location {
         locations[13] = "5th Settlement";
         locations[14] = "Abour";
     }
-    public boolean validate(String firstLocation, String secondLocation){
+    public boolean validate(String firstLocation, String secondLocation) {
         return (firstLocation != secondLocation);
     }
     public int getFromIndex(String firstLocation){
@@ -249,4 +251,26 @@ class Bus extends Vehicle {
     public MotorBike(){
         super(7);
     }
+}
+
+
+class CostCalculator implements Calculator {
+    private double costPerMile = 5;
+    private double costPerMin = 0.3;
+    private double bookingFee = 5;
+
+    public double calculate(int fromIndex, int toIndex) {
+        return (new DistanceCalculator().calculate(fromIndex, toIndex) * costPerMile)
+                + (new TimeCalculator().calculate(fromIndex, toIndex) * costPerMin)
+                + bookingFee;
+    }
+}
+
+class DistanceCalculator implements Calculator {
+    public double calculate(int fromIndex, int toIndex) {
+        return Math.abs(fromIndex - toIndex);
+    }
+}
+interface Calculator {
+    double calculate(int fromIndex, int toIndex);
 }

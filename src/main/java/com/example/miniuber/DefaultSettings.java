@@ -9,10 +9,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public abstract class DefaultSettings {
+public class DefaultSettings {
 
     public static String savePage;
-
     @FXML
    public void goTo(ActionEvent event, String page) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(page + ".fxml"));
@@ -21,6 +20,5 @@ public abstract class DefaultSettings {
         stage.setScene(scene);
         stage.show();
     }
-
 
 }
