@@ -5,13 +5,18 @@ public class DriverSupportTicket extends SupportTicket{
     private boolean issueWithDestination;
     private boolean issueWithStoppage;
     private boolean issueWithSeats;
-    DriverSupportTicket(int ticketId, String Username, String issueDescription,boolean issueWithAC,boolean issueWithDestination,boolean issueWithStoppage,boolean issueWithSeats){
-        super(ticketId, Username, issueDescription);
-        this.issueWithAC=issueWithAC;
-        this.issueWithDestination=issueWithDestination;
-        this.issueWithStoppage=issueWithStoppage;
-        this.issueWithSeats=issueWithSeats;
+//    DriverSupportTicket(int ticketId, String Username, String issueDescription,boolean issueWithAC,boolean issueWithDestination,boolean issueWithStoppage,boolean issueWithSeats){
+//        super(ticketId, Username, issueDescription);
+//        this.issueWithAC=issueWithAC;
+//        this.issueWithDestination=issueWithDestination;
+//        this.issueWithStoppage=issueWithStoppage;
+//        this.issueWithSeats=issueWithSeats;
+//    }
+    DriverSupportTicket(String issueDescription){
+        super(issueDescription);
+
     }
+
     public boolean ACIssue(){
         return issueWithAC;
     }

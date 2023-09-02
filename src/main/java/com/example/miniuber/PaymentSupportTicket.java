@@ -1,16 +1,20 @@
 package com.example.miniuber;
 
-public class PaymentSupportTicket extends SupportTicket{
+public class PaymentSupportTicket extends SupportTicket {
     private boolean issueWithChange;
     private boolean issueWithUpdatedFares;
     private boolean issueWithCreditFares;
     private boolean issueWithOvercharges;
-    PaymentSupportTicket(int ticketId, String Username, String issueDescription,boolean issueWithChange,boolean issueWithUpdatedFares,boolean issueWithCreditFares,boolean issueWithOvercharges){
-        super(ticketId, Username, issueDescription);
-        this.issueWithChange=issueWithChange;
-        this.issueWithCreditFares=issueWithCreditFares;
-        this.issueWithUpdatedFares=issueWithUpdatedFares;
-        this.issueWithOvercharges=issueWithOvercharges;
+//    PaymentSupportTicket(int ticketId, String Username, String issueDescription,boolean issueWithChange,boolean issueWithUpdatedFares,boolean issueWithCreditFares,boolean issueWithOvercharges){
+//        super(ticketId, Username, issueDescription);
+//        this.issueWithChange=issueWithChange;
+//        this.issueWithCreditFares=issueWithCreditFares;
+//        this.issueWithUpdatedFares=issueWithUpdatedFares;
+//        this.issueWithOvercharges=issueWithOvercharges;
+//    }
+    PaymentSupportTicket(String issueDescription){
+        super(issueDescription);
+
     }
     public boolean ChangeIssue(){
         return issueWithChange;
