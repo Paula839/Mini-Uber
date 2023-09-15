@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
-public class UIRegister extends DefaultSettings implements UIButtons {
+public class UIRegister extends Page implements UIButtons {
 
     public static String sql;
     String emailFormat ="^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";

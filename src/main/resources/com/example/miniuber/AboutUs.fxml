@@ -6,22 +6,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniuber.UIAboutUs">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="794.0" fitWidth="1024.0" layoutX="22.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="794.0" fitWidth="1024.0" layoutX="11.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/aboutUs.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="135.0" fitWidth="127.0" layoutX="182.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="135.0" fitWidth="127.0" layoutX="460.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="135.0" fitWidth="127.0" layoutX="777.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="135.0" fitWidth="127.0" layoutX="327.0" layoutY="493.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="221.0" fitWidth="218.0" layoutX="367.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/dalia.jpg" />
+               </image></ImageView>
+            <ImageView fitHeight="219.0" fitWidth="221.0" layoutX="588.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/nada.jpg" />
+               </image></ImageView>
             <ImageView fitHeight="135.0" fitWidth="127.0" layoutX="611.0" layoutY="493.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="onBack" layoutX="30.0" layoutY="26.0" mnemonicParsing="false" onAction="#onGoBackClick" opacity="0.0" prefHeight="14.0" prefWidth="33.0" text="Button" />
+            <ImageView fitHeight="234.0" fitWidth="173.0" layoutX="32.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/paula.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="233.0" fitWidth="143.0" layoutX="226.0" layoutY="455.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/hala.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="232.0" fitWidth="210.0" layoutX="822.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/mina.jpg" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

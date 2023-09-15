@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
-public interface UIButtons extends OnAboutUs, OnSupport, OnGoBack {
+public interface UIButtons extends OnAboutUs, OnSupport, OnGoBack {//Strategy, Command, Interface Segregation
 
 }
 

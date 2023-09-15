@@ -1,6 +1,5 @@
 package com.example.miniuber;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +12,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
 
-public class UIRequest extends DefaultSettings implements Initializable, UIButtons, OnLogOut {
-    double finalCost = 0;
+public class UIRequest extends Page implements Initializable, UIButtons, OnLogOut {
+    Request request;
     static String  fromInput , toInput;
     static double costPremium = 0, costNormal = 0, costBus = 0, costMotorbike = 0;
     @FXML
@@ -29,7 +28,7 @@ public class UIRequest extends DefaultSettings implements Initializable, UIButto
 
     @FXML
     public void onRequestClick(ActionEvent page) throws IOException {
-        if(finalCost==0){
+        if(request.getFinalCost()==0) {
             didNotChoose.setText("Please choose location and car type first!");
         }
 
@@ -54,14 +53,14 @@ public class UIRequest extends DefaultSettings implements Initializable, UIButto
             normal.setOpacity(0);
             bus.setOpacity(0);
             motorbike.setOpacity(0);
-            finalCost = costPremium;
-            if(finalCost == 0){
+            request.setFinalCost(costPremium);
+            if(request.getFinalCost() == 0){
                 didNotChoose.setText("Please choose a location first");
             }
         }
         else {
             premium.setOpacity(0);
-            finalCost =0;
+            request.setFinalCost(0);
         }
     }
     @FXML
@@ -71,15 +70,15 @@ public class UIRequest extends DefaultSettings implements Initializable, UIButto
             premium.setOpacity(0);
             bus.setOpacity(0);
             motorbike.setOpacity(0);
-            finalCost = costNormal;
-            if(finalCost == 0){
+            request.setFinalCost(costNormal);
+            if(request.getFinalCost() == 0){
                 didNotChoose.setText("Please choose a location first");
             }
         }
 
         else {
             normal.setOpacity(0);
-            finalCost = 0;
+            request.setFinalCost(0);
         }
     }
     @FXML
@@ -89,15 +88,15 @@ public class UIRequest extends DefaultSettings implements Initializable, UIButto
             premium.setOpacity(0);
             normal.setOpacity(0);
             motorbike.setOpacity(0);
-            finalCost = costBus;
-            if(finalCost == 0){
+            request.setFinalCost(costBus);
+            if(request.getFinalCost() == 0){
                 didNotChoose.setText("Please choose a location first");
             }
         }
 
         else {
             bus.setOpacity(0);
-            finalCost=0;
+            request.setFinalCost(0);
         }
     }
     @FXML
@@ -106,16 +105,16 @@ public class UIRequest extends DefaultSettings implements Initializable, UIButto
             motorbike.setOpacity(1);
             premium.setOpacity(0);
             bus.setOpacity(0);
-            bus.setOpacity(0);
-            finalCost = costMotorbike;
-            if(finalCost == 0){
+            normal.setOpacity(0);
+            request.setFinalCost(costMotorbike);
+            if(request.getFinalCost() == 0){
                 didNotChoose.setText("Please choose a location first");
             }
         }
 
         else {
             motorbike.setOpacity(0);
-            finalCost=0;
+            request.setFinalCost(0);
         }
     }
     @Override
@@ -142,7 +141,7 @@ public class UIRequest extends DefaultSettings implements Initializable, UIButto
         if(location.validate(fromInput, toInput)){
             index1 = location.getFromIndex(fromInput);
             index2 = location.getToIndex(toInput);
-            Request request = new Request();
+             request = new Request();
             costPremium = request.calculateCost(index1,index2,new Premium());
             costNormal = request.calculateCost(index1,index2,new Normal());
             costBus = request.calculateCost(index1,index2,new Bus());
@@ -177,12 +176,21 @@ public class UIRequest extends DefaultSettings implements Initializable, UIButto
 
 class Request {
     private Calculator costCalculator;
+    private double finalCost = 0;
 
     public Request() {
         costCalculator = new CostCalculator();
     }
     public double calculateCost(int fromIndex, int toIndex, Vehicle vehicle) {
         return costCalculator.calculate(fromIndex, toIndex)+ vehicle.cost;
+    }
+
+    public double getFinalCost() {
+        return finalCost;
+    }
+
+    public void setFinalCost(double finalCost) {
+        this.finalCost = finalCost;
     }
 }
 class Location {
@@ -227,7 +235,7 @@ class Location {
 
 
 }
-abstract class Vehicle {
+abstract class Vehicle { //Factory
     float cost;
     public Vehicle(float cost) {
         this.cost = cost;
@@ -253,7 +261,9 @@ class Bus extends Vehicle {
     }
 }
 
-
+interface Calculator { // Strategy
+    double calculate(int fromIndex, int toIndex);
+}
 class CostCalculator implements Calculator {
     private double costPerMile = 5;
     private double costPerMin = 0.3;
@@ -271,6 +281,10 @@ class DistanceCalculator implements Calculator {
         return Math.abs(fromIndex - toIndex);
     }
 }
-interface Calculator {
-    double calculate(int fromIndex, int toIndex);
+
+
+class TimeCalculator implements Calculator {
+    public double calculate(int fromIndex, int toIndex) {
+        return Math.abs(fromIndex - toIndex) * 10;
+    }
 }

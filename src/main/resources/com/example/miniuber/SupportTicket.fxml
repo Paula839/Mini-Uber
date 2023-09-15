@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniuber.UISupportTicket">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.miniuber.UISupportTicket">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -56,6 +56,11 @@
             <Label fx:id="EmptyTextBox1" layoutX="753.0" layoutY="482.0" prefHeight="32.0" prefWidth="246.0" textFill="RED">
                <font>
                   <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="notifyText" layoutX="384.0" layoutY="612.0" prefHeight="45.0" prefWidth="258.0" textFill="#00ff09">
+               <font>
+                  <Font size="18.0" />
                </font>
             </Label>
          </children>

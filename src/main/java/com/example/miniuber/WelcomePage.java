@@ -12,13 +12,12 @@ import java.io.IOException;
 
 
 
-public class WelcomePage extends DefaultSettings{
+public class WelcomePage extends Page{
 
 
     @FXML
     public void onGoButtonClick(ActionEvent page) throws IOException, InterruptedException {
-//        mediaPlayer.play();
-//        Thread.sleep(5000);
+
        goTo(page,"Login");
     }
     @FXML

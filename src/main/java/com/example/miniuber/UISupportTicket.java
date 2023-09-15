@@ -8,10 +8,11 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
-
-public class UISupportTicket extends DefaultSettings {
+public class UISupportTicket extends Page {
     public static String sql;
+    public Label notifyText;
     SupportTicketFactory supportTicketFactory;
 
     public TextField lostText, anotherProblemText;
@@ -22,7 +23,7 @@ public class UISupportTicket extends DefaultSettings {
     private Label didNotChooseHelp, EmptyTextBox1, EmptyTextBox11;
 
     public void onLostClick() {
-        if(lostImage.getOpacity() == 0) {
+        if (lostImage.getOpacity() == 0) {
             lostText.setOpacity(1);
             lostImage.setOpacity(1);
             anotherImage.setOpacity(0);
@@ -129,20 +130,25 @@ public class UISupportTicket extends DefaultSettings {
             supportTicketFactory = new DriverSupportTicketFactory();
             SupportTicket supportTicket = supportTicketFactory.createSupportTicket(
                     "About the driver");
+            TicketObserver observer = new NotificationObserver(notifyText);
+            observer.notify(supportTicket);
             AboutProblemRead aboutProblemRead = new AboutProblemRead(supportTicket);
             aboutProblemRead.read();
             Database.store(sql);
+
         }
 
         else if(anotherImage.getOpacity() == 1) {
-            supportTicketFactory = new AnotherSupportTicketFactory();
-            if(anotherProblemText.getLength() <= 2){
+            if(anotherProblemText.getLength() <= 2) {
                 EmptyTextBox1.setText("Please specify description first");
             }
 
             else {
                 SupportTicket supportTicket = supportTicketFactory.createSupportTicket(
                         anotherProblemText.getText());
+                supportTicketFactory = new AnotherSupportTicketFactory();
+                TicketObserver observer = new NotificationObserver(notifyText);
+                observer.notify(supportTicket);
                 AnotherProblemRead anotherProblemRead = new AnotherProblemRead();
                 saveAnotherProblemText = anotherProblemText.getText();
                 anotherProblemRead.read();
@@ -153,7 +159,8 @@ public class UISupportTicket extends DefaultSettings {
             supportTicketFactory = new PaymentSupportTicketFactory();
             SupportTicket supportTicket = supportTicketFactory.createSupportTicket(
                     "About The Payment");
-
+            TicketObserver observer = new NotificationObserver(notifyText);
+            observer.notify(supportTicket);
             AboutProblemRead aboutProblemRead = new AboutProblemRead(supportTicket);
             aboutProblemRead.read();
             Database.store(sql);
@@ -168,7 +175,8 @@ public class UISupportTicket extends DefaultSettings {
                         (
                         lostText.getText()
                         );
-
+                TicketObserver observer = new NotificationObserver(notifyText);
+                observer.notify(supportTicket);
                 saveLostText = lostText.getText();
                 LostRead lostRead = new LostRead();
                 lostRead.read();
@@ -179,39 +187,20 @@ public class UISupportTicket extends DefaultSettings {
         else{
             didNotChooseHelp.setText("Please specify how can we support you");
         }
-
     }
 
-
-    public void OnPaymentComplaintSubmitClick(ActionEvent actionEvent) {
-    }
-
-    public void OnSubmitDriverComplaintClick(ActionEvent actionEvent) {
-    }
 }
- abstract class  SupportTicket implements Ticket {
+ abstract class SupportTicket implements Ticket {
 
     private int ticketId;
     private String Username;
     private String issueDescription;
     private boolean resolved;
-
-    public SupportTicket( String issueDescription) {
+    public SupportTicket(String issueDescription) {
 
         this.issueDescription = issueDescription;
         this.resolved = false;
     }
-
-
-//    @Override
-//    public int getTicketId() {
-//        return ticketId;
-//    }
-//
-//    @Override
-//    public String getUsername() {
-//        return Username;
-//    }
 
     @Override
     public String getIssueDescription() {
@@ -240,13 +229,6 @@ class DriverSupportTicket extends SupportTicket {
     private boolean issueWithDestination;
     private boolean issueWithStoppage;
     private boolean issueWithSeats;
-    //    DriverSupportTicket(int ticketId, String Username, String issueDescription,boolean issueWithAC,boolean issueWithDestination,boolean issueWithStoppage,boolean issueWithSeats){
-//        super(ticketId, Username, issueDescription);
-//        this.issueWithAC=issueWithAC;
-//        this.issueWithDestination=issueWithDestination;
-//        this.issueWithStoppage=issueWithStoppage;
-//        this.issueWithSeats=issueWithSeats;
-//    }
     DriverSupportTicket(String issueDescription){
         super(issueDescription);
 
@@ -307,13 +289,6 @@ class PaymentSupportTicket extends SupportTicket {
     private boolean issueWithUpdatedFares;
     private boolean issueWithCreditFares;
     private boolean issueWithOvercharges;
-    //    PaymentSupportTicket(int ticketId, String Username, String issueDescription,boolean issueWithChange,boolean issueWithUpdatedFares,boolean issueWithCreditFares,boolean issueWithOvercharges){
-//        super(ticketId, Username, issueDescription);
-//        this.issueWithChange=issueWithChange;
-//        this.issueWithCreditFares=issueWithCreditFares;
-//        this.issueWithUpdatedFares=issueWithUpdatedFares;
-//        this.issueWithOvercharges=issueWithOvercharges;
-//    }
     PaymentSupportTicket(String issueDescription){
         super(issueDescription);
 
@@ -355,46 +330,19 @@ interface SupportTicketFactory {
 }
 
 class TechnicalSupportTicket extends SupportTicket {
-    private boolean issueWithBrokenCar;
-    private boolean issueWithChangedDriver;
-    private boolean issueWithDriverDiscrimination;
-    //    TechnicalSupportTicket(int ticketId, String Username, String issueDescription,boolean issueWithBrokenCar,boolean issueWithChangedDriver,boolean issueWithDriverDiscrimination){
-//        super(ticketId, Username, issueDescription);
-//        this.issueWithBrokenCar=issueWithBrokenCar;
-//        this.issueWithChangedDriver=issueWithChangedDriver;
-//        this.issueWithDriverDiscrimination=issueWithDriverDiscrimination;
-//    }
-    TechnicalSupportTicket(String issueDescription){
+    TechnicalSupportTicket(String issueDescription) {
         super(issueDescription);
 
-    }
-    public boolean BrokenCarIssue(){
-        return issueWithBrokenCar;
-    }
-    public void setIssueWithBrokenCar(boolean issueWithBrokenCar){
-        this.issueWithBrokenCar=issueWithBrokenCar;
-    }public boolean ChangedDriverIssue(){
-        return issueWithChangedDriver;
-    }
-    public void setIssueWithChangedDriver(boolean issueWithChangedDriver){
-        this.issueWithChangedDriver=issueWithChangedDriver;
-    }public boolean DriverDiscriminationIssue(){
-        return issueWithDriverDiscrimination;
-    }
-    public void setIssueWithDriverDiscrimination(boolean issueWithDriverDiscrimination){
-        this.issueWithDriverDiscrimination=issueWithDriverDiscrimination;
     }
 }
 
 interface Ticket {
-    //    int getTicketId();
-//    String getUsername();
+
     String getIssueDescription();
     boolean isResolved();
 }
 
 class LostRead implements Read {
-
     @Override
     public void read() {
         UISupportTicket.sql = "INSERT INTO supporttickets VALUES( " +
@@ -404,7 +352,6 @@ class LostRead implements Read {
     }
 }
 class AnotherProblemRead implements Read {
-
     @Override
     public void read() {
         UISupportTicket.sql = "INSERT INTO supporttickets VALUES( " +
@@ -428,3 +375,16 @@ class AboutProblemRead implements Read {
     }
 }
 
+interface TicketObserver {
+    void notify(Ticket ticket);
+}
+class NotificationObserver implements TicketObserver {
+    Label notifyText;
+    NotificationObserver(Label notifyText) {
+        this.notifyText = notifyText;
+    }
+    @Override
+    public void notify(Ticket ticket) {
+        notifyText.setText("Ticket has been submit!");
+    }
+}

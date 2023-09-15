@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UIDone extends DefaultSettings implements UIButtons, Initializable {
+public class UIDone extends Page implements UIButtons, Initializable { //Strategy
     @FXML
     Label paymentLabel;
     @FXML

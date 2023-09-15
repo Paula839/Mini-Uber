@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class UILogin extends DefaultSettings implements OnGoBack, OnAboutUs {
+public class UILogin extends Page implements OnGoBack, OnAboutUs {
     String sound = "D:\\CloneFinal2\\Mini-Uber\\src\\main\\resources\\music\\aboMohamed.mp3";
     Media media = new Media(new File(sound).toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(media);

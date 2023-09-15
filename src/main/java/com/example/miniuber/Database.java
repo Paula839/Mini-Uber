@@ -5,8 +5,9 @@ import java.sql.*;
 
 public class Database {
 
+    private Database(){}
     public static Statement statement;
-    public static Connection connection;
+    public static Connection connection ;
     public static ResultSet resultSet;
 
     static {

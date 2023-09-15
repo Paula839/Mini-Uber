@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class UIForget extends DefaultSettings implements UIButtons {
+public class UIForget extends Page implements UIButtons { //Factory
     public TextField emailText;
     public static String saveEmail;
     public Label wrongInput, username, password;
@@ -57,7 +57,7 @@ public class UIForget extends DefaultSettings implements UIButtons {
     }
 }
 
-class ForgetValidation implements Validation {
+class ForgetValidation implements Validation { //Single Responsibility Principle,
     String email = UIForget.saveEmail;
     @Override
     @FXML

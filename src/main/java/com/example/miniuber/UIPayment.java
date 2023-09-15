@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class UIPayment extends DefaultSettings implements UIButtons {
+public class UIPayment extends Page implements UIButtons {
     public static double cost;
     public ImageView credit, cash;
     public static int card = 0; //0 for null ,1 for credit, 2 for cash

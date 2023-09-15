@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniuber.UIRequest">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.miniuber.UIRequest">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -44,19 +44,19 @@
             <ComboBox fx:id="fromCombo" layoutX="298.0" layoutY="160.0" opacity="0.55" prefHeight="42.0" prefWidth="410.0" />
             <ComboBox fx:id="toCombo" layoutX="301.0" layoutY="260.0" opacity="0.55" prefHeight="42.0" prefWidth="407.0" />
             <Button layoutX="780.0" layoutY="207.0" mnemonicParsing="false" onAction="#OnConfirmLocClick" opacity="0.0" prefHeight="30.0" prefWidth="109.0" text="confrim" />
-            <Label fx:id="premiumCostLabel" layoutX="214.0" layoutY="491.0">
+            <Label fx:id="premiumCostLabel" layoutX="235.0" layoutY="489.0" prefHeight="27.0" prefWidth="52.0">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <Label fx:id="normalCostLabel" layoutX="399.0" layoutY="491.0">
+            <Label fx:id="normalCostLabel" layoutX="427.0" layoutY="490.0" prefHeight="24.0" prefWidth="55.0">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <Label fx:id="busCostLabel" layoutX="583.0" layoutY="491.0">
+            <Label fx:id="busCostLabel" layoutX="611.0" layoutY="489.0" prefHeight="26.0" prefWidth="73.0">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <Label fx:id="motorCostLabel" layoutX="768.0" layoutY="491.0">
+            <Label fx:id="motorCostLabel" layoutX="797.0" layoutY="490.0" prefHeight="26.0" prefWidth="70.0">
                <font>
                   <Font size="15.0" />
                </font></Label>

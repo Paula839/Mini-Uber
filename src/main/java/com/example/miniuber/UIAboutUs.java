@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class UIAboutUs extends DefaultSettings{
+public class UIAboutUs extends Page{
     @FXML
     public void onGoBackClick(ActionEvent page) throws IOException {
         goTo(page, savePage);
